@@ -1,5 +1,8 @@
 library colour;
 
+part 'definitions.dart';
+part 'rgb_color.dart';
+
 class Colour {
   static const BEIGE = 0;
   static const GREEN = 1;
@@ -13,23 +16,22 @@ class Colour {
 
   int _colour;
   String _colourName;
-  int baseInt;
-  int darkInt;
 
-  double base;
-  double dark;
-  bool ended = false;
+  RgbColor base;
+  RgbColor dark;
+  RgbColor highlight;
 
   Colour(this._colour){
     colour = _colour;
+
   }
 
   set baseColour(String string){
-    baseInt = getInt(string);
+    base = new RgbColor.fromString(string);
   }
 
   set darkColour(String string){
-    darkInt = getInt(string);
+    dark = new RgbColor.fromString(string);
   }
 
   set colourName(String string){
@@ -37,15 +39,11 @@ class Colour {
   }
 
   get baseColour{
-    if(!ended){
-      return getString(base.toInt());
-    } else return getString(baseInt);
+    return base.string;
   }
 
   get darkColour{
-    if(!ended){
-      return getString(dark.toInt());
-    } else return getString(darkInt);
+   return dark.string;
   }
 
   get colourName{
@@ -111,20 +109,6 @@ class Colour {
         colourName = 'Black';
         break;
     }
-
-    ended = true;
-  }
-
-  getInt(String string){
-    return int.parse("0x${string.substring(1,string.length)}");
-  }
-
-  getString(int number){
-    String string = number.toRadixString(16);
-    while(string.length < 6){
-      string = '0' + string;
-    }
-    return '#' + string;
   }
 
   get colour => _colour;
