@@ -16,6 +16,9 @@ class Colour {
 
   int _colour;
   String _colourName;
+  int r;
+  int g;
+  int b;
 
   RgbColor base;
   RgbColor dark;
@@ -23,8 +26,9 @@ class Colour {
 
   Colour(this._colour){
     colour = _colour;
-
   }
+
+  Colour.rgb(this.r, this.g, this.b);
 
   set baseColour(String string){
     base = new RgbColor.fromString(string);
@@ -43,7 +47,7 @@ class Colour {
   }
 
   get darkColour{
-   return dark.string;
+    return dark.string;
   }
 
   get colourName{

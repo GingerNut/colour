@@ -2,14 +2,18 @@ part of colour;
 
 class RgbColor{
 
-  int r;
-  int g;
-  int b;
+  int _r;
+  int _g;
+  int _b;
 
   String _string;
   bool valid = false;
 
-  RgbColor(this.r, this.g, this.b);
+  RgbColor(r, g, b){
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
 
   RgbColor.fromString(String string){
 
@@ -27,6 +31,29 @@ class RgbColor{
 
     b = int.parse("0x" + bString);
  }
+
+  get r => _r;
+  get g => _g;
+  get b => _b;
+
+  set r(int value){
+    _r = bound(value);
+   }
+
+  set g(int value){
+    _g = bound(value);
+  }
+
+  set b(int value){
+    _b = bound(value);
+  }
+
+  int bound(int value){
+    if (value < 0) value = 0;
+    if(value > 255) value = 255;
+    return value;
+  }
+
 
   get string{
     if(_string != null && valid) return _string;
